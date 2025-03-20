@@ -120,7 +120,7 @@ export function setupTrunkIntegration(app: express.Application): void {
     (async () => {
       try {
         // First get browser console errors
-        const browserErrorsResponse = await fetch(`http://localhost:${process.env.PORT || 3030}/console-errors`);
+        const browserErrorsResponse = await fetch(`http://localhost:${process.env.PORT || 3025}/console-errors`);
         const browserErrors = await browserErrorsResponse.json();
         
         // Then get Trunk build errors
