@@ -20,6 +20,8 @@ import {
 } from "./lighthouse/index.js";
 import * as net from "net";
 import { runBestPracticesAudit } from "./lighthouse/best-practices.js";
+// Import Trunk integration
+import { setupTrunkIntegration } from "./trunk-integration.js";
 
 /**
  * Converts a file path to the appropriate format for the current platform
@@ -1472,8 +1474,11 @@ export class BrowserConnector {
 
     // Initialize the browser connector with the existing app AND server
     const browserConnector = new BrowserConnector(app, server);
-
-    // Handle shutdown gracefully with improved error handling
+    
+    // Setup Trunk integration
+    setupTrunkIntegration(app);
+    
+    // Start the server's shutdown function
     process.on("SIGINT", async () => {
       console.log("\nReceived SIGINT signal. Starting graceful shutdown...");
 
